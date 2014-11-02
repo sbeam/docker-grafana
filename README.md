@@ -1,9 +1,7 @@
 # Docker image to run grafana
 
-simple nginx container to run static graphana files. 
+simple nginx container to run static graphana files based on official nginx image.
 
-Nginx runs on a special port, 8090, to avoid conflicts on the same host with 80. This could be changed.
+Hook in graphana config with a volume covering the config file at `/usr/share/nginx/html/config.js`, eg
 
-Hook in graphana config with a volume covering the config file at /opt/grafana/config.js, eg
-
-    docker run -p 80:8090 --rm --link influxdb:influxdb -v /home/ubuntu/graphana/config.js:/opt/grafana/config.js sbeam/grafana
+    docker run -p 8088:80 --rm -v /home/sbeam/work/grafana/config.js:/usr/share/nginx/html/config.js sbeam/grafana
